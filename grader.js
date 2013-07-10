@@ -68,13 +68,13 @@ var functionPassedIn = function(result,response){
     } else {
       fs.writeFileSync(outFile, result);
     }
-}
+};
 
 if (require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
-        .option('-u, --url <url>', 'Path to url');
+        .option('-u, --url <url>', 'Path to url')
         .parse(process.argv);
     if (program.url.length > 2) {
       restler.get(program.url).on('complete', functionPassedIn);
@@ -86,4 +86,3 @@ if (require.main == module) {
 } else
     exports.checkHtmlFile = checkHtmlFile;
 }
-
